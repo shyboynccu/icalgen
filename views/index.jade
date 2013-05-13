@@ -1,0 +1,30 @@
+extends layout
+block head
+  script
+    $(document).ready(function(){
+      $("#btnGenerate").click(function(){
+        jQuery.post("/api/gen", {
+          "Summary": $("#event_summary").val(),
+          "DateFrom": $("#event_date_from").val(),
+          "DateTo":$("#event_date_to").val()
+        }, function(data, textStatus, jqXHR) { 
+          $("#qrcode").html('<img src=' + data + ' />')
+        });
+      });
+    });
+
+block content
+  h1 iCalGen.js -  A iCalendar (RFC 5545) File Generator 
+  section.css-table
+    section.two-column
+      section.cell
+        h2 Step 1: Enter event detail
+        p blah blah blah
+        form(method='post', action='/api/gen')
+          input#event_summary(value='CEO Meetup')
+          input#event_date_from(value='5/8/2013 17:00')
+          input#event_date_to(value='5/9/2013 19:00')
+          input#btnGenerate(type="button", value="Generate!")
+      section.cell
+        h2 Step 2: Share event!
+        #qrcode

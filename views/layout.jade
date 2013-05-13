@@ -1,0 +1,21 @@
+!!! 5
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    script(src="//ajax.googleapis.com/ajax/libs/dojo/1.9.0/dojo/dojo.js")
+    script(src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js", data-dojo-config="async: true")
+    block head
+  body
+    section#wrapper
+      block content
+      footer
+        section.css-table
+          section.four-column
+            section.cell 
+            section.cell 
+            section.cell 
+            section.cell 
+              p 
+              | Powered by 
+              a(href="http://nodejs.org/") node.js
