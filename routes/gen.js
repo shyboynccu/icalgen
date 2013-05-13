@@ -22,10 +22,8 @@ exports.gen = function(req, res){
     }
   });
   
-  var ics_url = appconf.proto + "://" + appconf.host + ":" + appconf.port +
-                "/event/" + event_id;
+  var ics_url = appconf.proto + "://" + appconf.host + ":" + req.app.settings.port + "/event/" + event_id;
   var qr_string = QRCode.toDataURL(ics_url, function(err,url){
-        console.log(ics_url);
         res.send(url);
     });
 };

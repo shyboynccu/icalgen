@@ -12,9 +12,9 @@ var express = require('express')
   , config = require('konphyg')(__dirname + '/config');
 
 var app = express();
-
+var port = process.env.PORT || config('conf').port;
 // all environments
-app.set('port', config('conf').port);
+app.set('port', port);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
 app.use(express.favicon());
@@ -33,6 +33,7 @@ app.get('/', routes.index);
 app.get('/events/:id', events.byid);
 app.post('/api/gen', gen.gen);
 
+console.log(app.get('port'))
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
