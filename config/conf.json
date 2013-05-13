@@ -1,5 +1,5 @@
 {
 	"proto": "http"
-  , "host": "localhost"
-  , "port": 4704
+  , "host": "polar-springs-3081.herokuapp.com"
+  , "port": 80
 }
