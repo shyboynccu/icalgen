@@ -22,8 +22,8 @@ exports.byid = function(req, res){
           }
           else
           {
-              res.setHeader('Content-Type', 'text/calendar');
-              res.setHeader('Content-Disposition', 'attachment; filename="event.ics"');
+              //res.setHeader('Content-Type', 'text/calendar');
+              //res.setHeader('Content-Disposition', 'attachment; filename="event.ics"');
               res.send(item.ics_string);
           }
       });
