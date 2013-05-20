@@ -1,5 +1,6 @@
 {
 	"proto": "http"
-  , "host": "polar-springs-3081.herokuapp.com"
+  , "host": "icalgen.herokuapp.com"
   , "port": 4704
+  , "mongodb_url": "mongodb://localhost:27017/icalgen"
 }
