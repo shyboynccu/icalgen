@@ -12,7 +12,19 @@ exports.gen = function(req, res){
   var event_id = uuid.v4(); 
   var event = new icalendar.VEvent(event_id);
   event.setSummary(req.body.Summary);
+  event.setDescription('');
   event.setDate(new Date(req.body.DateFrom), new Date(req.body.DateTo));
+
+  var output = event.toString();
+
+  var output =  "BEGIN:VEVENT" + "\n"
+              + event.getProperty('SUMMARY').format() + "\n"
+              + event.getProperty('DESCRIPTION').format() + "\n"
+              + event.getProperty('DTSTART').format() + "\n"
+              + event.getProperty('DTEND').format() + "\n"
+              + "END:VEVENT";
+
+  console.log(output);
 
   var mongo_client = require('mongodb').MongoClient;
 
@@ -33,9 +45,8 @@ exports.gen = function(req, res){
           {
               console.log(err);
           }
-          var ics_url = appconf.proto + "://" + appconf.host + "/events/" + event_id;
-          console.log(ics_url);
-          var qr_string = QRCode.toDataURL(ics_url, function(err,url){
+          //var ics_url = appconf.proto + "://" + appconf.host + "/events/" + event_id;
+          var qr_string = QRCode.toDataURL(output, function(err,url){
             res.send(url);
           });
       });
