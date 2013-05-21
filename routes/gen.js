@@ -24,8 +24,6 @@ exports.gen = function(req, res){
               + event.getProperty('DTEND').format() + "\n"
               + "END:VEVENT";
 
-  console.log(output);
-
   var mongo_client = require('mongodb').MongoClient;
 
   var mongoUri = process.env.MONGOLAB_URI || 
@@ -47,6 +45,7 @@ exports.gen = function(req, res){
           }
           //var ics_url = appconf.proto + "://" + appconf.host + "/events/" + event_id;
           var qr_string = QRCode.toDataURL(output, function(err,url){
+            res.setHeader('Content-Type', 'text/calendar');
             res.send(url);
           });
       });
